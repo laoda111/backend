@@ -19,7 +19,7 @@ import org.springframework.context.annotation.Configuration;
  *
  */
 @Configuration
-@MapperScan(basePackages = "com.template.springbootinitmaster.infrastructure.mapper")
+@MapperScan(basePackages = "com.template.springbootinitmaster.domain.mapper")
 public class MybatisPlusConfig {
 
     @Bean

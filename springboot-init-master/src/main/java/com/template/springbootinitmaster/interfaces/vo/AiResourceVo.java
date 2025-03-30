@@ -18,16 +18,15 @@ public class AiResourceVo implements Serializable {
     private Long id;
 
     @ExcelProperty(value = "授课学段")
-    private String grade;
+    private String educationalStage;
 
     @ExcelProperty(value = "年级")
-    private String gradeLevel;
+    private String grade;
 
     @ExcelProperty(value = "授课学科")
     private String subject;
 
-    @ExcelProperty(value = "授课老师")
-    private String teacher;
+
 
     @ExcelProperty(value = "教师性别")
     private String teacherSex;
@@ -39,7 +38,7 @@ public class AiResourceVo implements Serializable {
     private String teachingFormat;
 
     @ExcelProperty(value = "教师类型")
-    private String teachingType;
+    private String teacherCategory;
 
     @ExcelProperty(value = "名师特色信息")
     private String feature;
@@ -64,4 +63,21 @@ public class AiResourceVo implements Serializable {
 
     @ExcelProperty(value = "教学文档")
     private String document;
+
+    @ExcelProperty(value = "年份")
+    private String year;
+
+    @ExcelProperty(value = "院系")
+    private String department;
+
+    @ExcelProperty(value = "语言")
+    private String language;
+
+    @ExcelProperty(value = "类型")
+    private String wordType;
+
+    @ExcelProperty(value = "国别")
+    private String nation;
+
+    private String title;
 }

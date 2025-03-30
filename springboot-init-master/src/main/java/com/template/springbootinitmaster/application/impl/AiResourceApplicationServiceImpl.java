@@ -12,15 +12,17 @@ import com.template.springbootinitmaster.infrastructure.common.mybatis.core.page
 import com.template.springbootinitmaster.infrastructure.common.mybatis.core.page.TableDataInfo;
 import com.template.springbootinitmaster.interfaces.dto.AiResourceDto;
 import com.template.springbootinitmaster.interfaces.vo.AiResourceVo;
+import jakarta.annotation.Resource;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
+
 public class AiResourceApplicationServiceImpl extends ServiceImpl<AiResourceMapper, AiResource> implements AiResourceApplicationService {
 
 
-    private final AiResourceMapper aiResourceMapper;
+    @Resource
+    private  AiResourceMapper aiResourceMapper;
 
 
 

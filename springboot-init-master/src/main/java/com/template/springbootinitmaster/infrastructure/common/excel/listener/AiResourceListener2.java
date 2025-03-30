@@ -2,12 +2,9 @@ package com.template.springbootinitmaster.infrastructure.common.excel.listener;
 
 import com.alibaba.excel.context.AnalysisContext;
 import com.alibaba.excel.event.AnalysisEventListener;
-import com.alibaba.excel.read.listener.ReadListener;
-import com.alibaba.excel.util.ListUtils;
 import com.alibaba.fastjson.JSON;
 import com.template.springbootinitmaster.application.AiResourceApplicationService;
 import com.template.springbootinitmaster.domain.ailab.AiResource;
-import com.template.springbootinitmaster.domain.mapper.AiResourceMapper;
 import com.template.springbootinitmaster.infrastructure.common.core.exception.ServiceException;
 import com.template.springbootinitmaster.infrastructure.common.core.utils.SpringUtils;
 import com.template.springbootinitmaster.infrastructure.common.core.utils.StringUtils;
@@ -16,12 +13,11 @@ import com.template.springbootinitmaster.infrastructure.common.excel.core.ExcelR
 import com.template.springbootinitmaster.interfaces.vo.AiResourceVo;
 import lombok.extern.slf4j.Slf4j;
 
-
 import java.util.List;
 
 // 有个很重要的点 AiResourceListener 不能被spring管理，要每次读取excel都要new,然后里面用到spring可以构造方法传进去
 @Slf4j
-public class AiResourceListener extends AnalysisEventListener<AiResourceVo> implements ExcelListener<AiResourceVo> {
+public class AiResourceListener2 extends AnalysisEventListener<AiResourceVo> implements ExcelListener<AiResourceVo> {
 
     private final StringBuilder successMsg = new StringBuilder();
     private final StringBuilder failureMsg = new StringBuilder();
@@ -32,7 +28,7 @@ public class AiResourceListener extends AnalysisEventListener<AiResourceVo> impl
 
     private final AiResourceApplicationService aiResourceApplicationService;
 
-    public AiResourceListener() {
+    public AiResourceListener2() {
         this.aiResourceApplicationService = SpringUtils.getBean(AiResourceApplicationService.class);
     }
 
@@ -46,9 +42,10 @@ public class AiResourceListener extends AnalysisEventListener<AiResourceVo> impl
     @Override
     public void invoke(AiResourceVo aiResourceVo, AnalysisContext analysisContext) {
         try {
+
             AiResource aiResource = new AiResource();
-            aiResource.setType("小中高视频");
-            aiResource.setApplicableObjects("通用");
+            aiResource.setType("大学学生实践资源");
+            aiResource.setApplicableObjects("师范生");
             aiResource.setYear(aiResourceVo.getYear());
             aiResource.setDepartment(aiResourceVo.getDepartment());
             aiResource.setLanguage(aiResourceVo.getLanguage());
@@ -73,7 +70,7 @@ public class AiResourceListener extends AnalysisEventListener<AiResourceVo> impl
             successNum++;
             log.info("解析到一条数据:{}", JSON.toJSONString(aiResourceVo));
         } catch (Exception e) {
-            failureMsg.append( "数据异常：" + JSON.toJSONString(aiResourceVo));
+            failureMsg.append("<br/>" + "数据异常：" + JSON.toJSONString(aiResourceVo));
             failureNum++;
         }
     }
@@ -108,10 +105,7 @@ public class AiResourceListener extends AnalysisEventListener<AiResourceVo> impl
         String analysisResult = excelResult.getAnalysis();
         // 如果需要处理结果，可以在此进行
         log.info("分析结果: {}", analysisResult);
-
     }
-
-
     public String getSub(String resourceUrl){
 
         List<String>list =  StringUtils.splitList(resourceUrl,"\\");
