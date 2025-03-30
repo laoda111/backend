@@ -17,10 +17,6 @@ public class AiResourceVo implements Serializable {
 
     private Long id;
 
-
-    @ExcelProperty(value = "文档类型")
-    private String type;
-
     @ExcelProperty(value = "授课学段")
     private String grade;
 
@@ -51,8 +47,21 @@ public class AiResourceVo implements Serializable {
     @ExcelProperty(value = "授课时长")
     private String duration;
 
-    
+    @ExcelProperty(value = "其他视频资源类型")
+    private String VideoResourceTypes;
 
+    @ExcelProperty(value = "路径")
+    private String resourceUrl;
 
+    @ExcelProperty(value = "教材")
+    private String textbook;
 
+    @ExcelProperty(value = "授课地点")
+    private String location;
+
+    @ExcelProperty(value = "媒体使用")
+    private String media;
+
+    @ExcelProperty(value = "教学文档")
+    private String document;
 }
