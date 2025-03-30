@@ -46,7 +46,7 @@ public class AiResourceVo implements Serializable {
     private String teachingType;
 
     @ExcelProperty(value = "名师特色信息")
-    private String feacture;
+    private String feature;
 
     @ExcelProperty(value = "授课时长")
     private String duration;
