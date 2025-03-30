@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="generator.mapper.AiResourceMapper">
+
+    <resultMap id="BaseResultMap" type="generator.domain.AiResource">
+            <id property="id" column="id" />
+            <result property="type" column="type" />
+            <result property="educationalStage" column="educational_stage" />
+            <result property="grade" column="grade" />
+            <result property="subject" column="subject" />
+            <result property="teacherSex" column="teacher_sex" />
+            <result property="teachingFormat" column="teaching_format" />
+            <result property="teacherCategory" column="teacher_category" />
+            <result property="textbook" column="textbook" />
+            <result property="duration" column="duration" />
+            <result property="location" column="location" />
+            <result property="media" column="media" />
+            <result property="document" column="document" />
+            <result property="resourceUrl" column="resource_url" />
+            <result property="department" column="department" />
+            <result property="wordType" column="word_type" />
+            <result property="year" column="year" />
+            <result property="applicableObjects" column="applicable_objects" />
+            <result property="nation" column="nation" />
+            <result property="language" column="language" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,type,educational_stage,grade,subject,teacher_sex,
+        teaching_format,teacher_category,textbook,duration,location,
+        media,document,resource_url,department,word_type,
+        year,applicable_objects,nation,language
+    </sql>
+</mapper>

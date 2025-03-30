@@ -21,7 +21,7 @@ spring:
   # todo 需替换配置
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/my_db
+    url: jdbc:mysql://localhost:3306/ailab
     username: root
     password: 123456
 
@@ -92,21 +92,6 @@ xss:
   enabled: true
   # 排除链接（多个用逗号分隔）
   excludeUrls:
-
-rules:
-  sharding:
-    tables:
-      picture:
-        actualDataNodes: ds0.picture_${0..2} # 3张分表：picture_0, picture_1, picture_2
-        tableStrategy:
-          standard:
-            shardingColumn: pictureId       # 按 pictureId 分片
-            shardingAlgorithmName: pictureIdMod
-    shardingAlgorithms:
-      pictureIdMod:
-        type: INLINE
-        props:
-          algorithm-expression: picture_${pictureId % 3} # 分片表达式
 
 
 
