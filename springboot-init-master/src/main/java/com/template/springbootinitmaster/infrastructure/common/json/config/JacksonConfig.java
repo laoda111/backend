@@ -10,6 +10,8 @@ import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer;
 import org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDateTime;
@@ -21,7 +23,7 @@ import java.util.TimeZone;
  *
  */
 @Slf4j
-@AutoConfiguration(before = JacksonAutoConfiguration.class)
+@Configuration
 public class JacksonConfig {
 
     @Bean

@@ -3,10 +3,8 @@ package com.template.springbootinitmaster.infrastructure.common.mybatis.handler;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.http.HttpStatus;
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
-import com.template.springbootinitmaster.infrastructure.common.core.domain.model.LoginUser;
 import com.template.springbootinitmaster.infrastructure.common.core.exception.ServiceException;
 import com.template.springbootinitmaster.infrastructure.common.core.utils.ObjectUtils;
-import com.template.springbootinitmaster.infrastructure.common.satoken.helper.LoginHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.reflection.MetaObject;
 import com.template.springbootinitmaster.infrastructure.common.mybatis.core.domain.BaseEntity;
@@ -38,15 +36,7 @@ public class InjectionMetaObjectHandler implements MetaObjectHandler {
                 baseEntity.setCreateTime(current);
                 baseEntity.setUpdateTime(current);
 
-                // 如果创建人为空，则填充当前登录用户的信息
-                if (ObjectUtil.isNull(baseEntity.getCreateBy())) {
-                    LoginUser loginUser = getLoginUser();
-                    if (ObjectUtil.isNotNull(loginUser)) {
-                        Long userId = loginUser.getUserId();
-                        // 填充创建人、更新人和创建部门信息
-                        baseEntity.setCreateBy(userId);
-                        baseEntity.setUpdateBy(userId);}
-                }
+
             } else {
                 Date date = new Date();
                 this.strictInsertFill(metaObject, "createTime", Date.class, date);
@@ -70,11 +60,7 @@ public class InjectionMetaObjectHandler implements MetaObjectHandler {
                 Date current = new Date();
                 baseEntity.setUpdateTime(current);
 
-                // 获取当前登录用户的ID，并填充更新人信息
-                Long userId = LoginHelper.getUserId();
-                if (ObjectUtil.isNotNull(userId)) {
-                    baseEntity.setUpdateBy(userId);
-                }
+
             } else {
                 this.strictUpdateFill(metaObject, "updateTime", Date.class, new Date());
             }
@@ -83,20 +69,5 @@ public class InjectionMetaObjectHandler implements MetaObjectHandler {
         }
     }
 
-    /**
-     * 获取当前登录用户信息
-     *
-     * @return 当前登录用户的信息，如果用户未登录则返回 null
-     */
-    private LoginUser getLoginUser() {
-        LoginUser loginUser;
-        try {
-            loginUser = LoginHelper.getLoginUser();
-        } catch (Exception e) {
-            log.warn("自动注入警告 => 用户未登录");
-            return null;
-        }
-        return loginUser;
-    }
 
 }
