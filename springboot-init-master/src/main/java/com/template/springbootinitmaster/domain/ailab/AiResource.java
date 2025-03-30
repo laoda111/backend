@@ -99,7 +99,6 @@ public class AiResource {
 
     /**
      * 适用对象
-     * 适用对象
      */
     private String applicableObjects;
 
@@ -114,5 +113,15 @@ public class AiResource {
     private String language;
 
 
+    /**
+     * 标题
+     */
     private String title;
+
+    /**
+     * 视频资源类型
+     */
+    private String VideoResourceTypes;
+
+
 }
